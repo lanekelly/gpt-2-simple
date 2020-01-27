@@ -211,7 +211,7 @@ def finetune(sess,
         batch_size=batch_size,
         temperature=1.0,
         top_k=40)
-
+    print("Debug point #3")
     all_vars = [v for v in tf.compat.v1.trainable_variables() if 'model' in v.name]
     train_vars = [v for v in all_vars if '/h' in v.name] if only_train_transformer_layers else all_vars
 
@@ -238,7 +238,7 @@ def finetune(sess,
         opt_grads = list(zip(opt_grads, train_vars))
         opt_apply = opt.apply_gradients(opt_grads)
         summary_loss = tf.compat.v1.summary.scalar('loss', loss)
-
+    print("Debug point #10")
     summary_log = tf.compat.v1.summary.FileWriter(checkpoint_path)
 
     saver = tf.compat.v1.train.Saver(
