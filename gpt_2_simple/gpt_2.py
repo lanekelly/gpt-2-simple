@@ -197,8 +197,9 @@ def finetune(sess,
 
     if multi_gpu:
         gpus = get_available_gpus()
-
+    print("Debug point #1: about to open the model.")
     output = model.model(hparams=hparams, X=context, gpus=gpus, reuse=reuse)
+    print("Debug point #2")
     loss = tf.reduce_mean(
         input_tensor=tf.nn.sparse_softmax_cross_entropy_with_logits(
             labels=context[:, 1:], logits=output['logits'][:, :-1]))
